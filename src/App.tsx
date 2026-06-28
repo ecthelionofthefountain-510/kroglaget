@@ -115,7 +115,6 @@ export default function App() {
             <h1>
               <span className="title">Lunchläget</span>
             </h1>
-            <p className="tagline">i Ystad med omnejd</p>
           </div>
           <button
             className={`locate ${status === 'granted' ? 'on' : ''}`}

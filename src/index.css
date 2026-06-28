@@ -140,14 +140,6 @@ button {
   display: flex;
   flex-direction: column;
 }
-.tagline {
-  margin: 4px 0 0 3px;
-  font-size: 12px;
-  font-weight: 500;
-  color: var(--muted);
-  letter-spacing: 0.04em;
-  animation: fade 0.8s ease 0.25s both;
-}
 .header h1 {
   margin: 0;
   display: flex;
@@ -158,7 +150,9 @@ button {
   font-size: 38px;
   font-weight: 400;
   letter-spacing: 0;
-  line-height: 1.05;
+  line-height: 1.35;
+  display: inline-block;
+  padding: 0.04em 0.06em 0.16em;
   background: linear-gradient(100deg, #d6d0ff 0%, var(--accent) 45%, var(--accent-2) 100%);
   -webkit-background-clip: text;
   background-clip: text;
