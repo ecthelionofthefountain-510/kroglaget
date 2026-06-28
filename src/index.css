@@ -631,3 +631,112 @@ button {
   color: var(--faint);
   line-height: 1.55;
 }
+
+/* ---------- Lägesväxel (Lunch / Öl) ---------- */
+.modes {
+  display: flex;
+  gap: 6px;
+  margin-top: 16px;
+  padding: 5px;
+  border-radius: 15px;
+  background: var(--bg-sunken);
+  box-shadow: var(--inset-sm);
+}
+.modes button {
+  flex: 1;
+  padding: 11px;
+  border: none;
+  background: transparent;
+  border-radius: 11px;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--muted);
+  transition: transform 0.15s ease, color 0.2s ease, box-shadow 0.25s ease,
+    background 0.25s ease;
+}
+.modes button:active {
+  transform: scale(0.96);
+}
+.modes button.active {
+  color: #fff;
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  box-shadow: var(--glow);
+}
+
+/* ---------- Öl-läge ---------- */
+.beer-sort {
+  display: flex;
+  gap: 8px;
+  margin-top: 16px;
+  flex-wrap: wrap;
+}
+.beer-sort .chip.is-disabled {
+  opacity: 0.4;
+}
+
+.beercard .beer-rank {
+  display: inline-grid;
+  place-items: center;
+  min-width: 26px;
+  height: 26px;
+  padding: 0 6px;
+  border-radius: 8px;
+  background: rgba(139, 123, 255, 0.18);
+  color: #c3bcff;
+  font-size: 13px;
+  font-weight: 800;
+  margin-right: 4px;
+  vertical-align: 2px;
+}
+.beer-price-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 14px;
+}
+.beer-price {
+  font-size: 27px;
+  font-weight: 800;
+  color: var(--text);
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  line-height: 1;
+}
+.beer-price span {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--faint);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.krcl {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--accent-2);
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: rgba(63, 208, 224, 0.13);
+  white-space: nowrap;
+}
+.krcl.best {
+  color: #3a2c05;
+  background: linear-gradient(135deg, #fcd34d, var(--amber));
+  box-shadow: 0 6px 16px -6px rgba(251, 191, 36, 0.7);
+}
+.beer-spec {
+  margin: 11px 0 0;
+  font-size: 13.5px;
+  color: var(--muted);
+}
+.hh {
+  margin-top: 12px;
+  display: inline-block;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: #fcd34d;
+  background: rgba(251, 191, 36, 0.12);
+  padding: 6px 12px;
+  border-radius: 10px;
+}

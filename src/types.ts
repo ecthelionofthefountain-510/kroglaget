@@ -103,3 +103,50 @@ export interface Restaurant {
   /** True om menyn ovan är exempeldata, inte en verifierad meny. */
   menuIsExample?: boolean
 }
+
+/* ---------- Öl ---------- */
+
+export type Container = 'fat' | 'flaska' | 'burk'
+
+export const CONTAINER_LABEL: Record<Container, string> = {
+  fat: 'Fat',
+  flaska: 'Flaska',
+  burk: 'Burk',
+}
+
+export type BeerSort = 'cl' | 'price' | 'distance'
+
+export const BEER_SORT_LABEL: Record<BeerSort, string> = {
+  cl: 'Billigast/cl',
+  price: 'Lägsta pris',
+  distance: 'Närmast',
+}
+
+export interface BeerSpot {
+  id: string
+  name: string
+  area: string
+  address: string
+  lat: number
+  lng: number
+  /** Ölmärke, t.ex. "Carlsberg" eller "Norrlands Guld". */
+  brand: string
+  container: Container
+  /** Volym i centiliter (40 fat, 50 stor stark, 33 burk …). */
+  volumeCl: number
+  /** Ordinarie pris i kronor för en stor stark. */
+  price: number
+  /** Happy hour-pris om sådant finns. */
+  happyHourPrice?: number
+  /** När happy hour gäller, fri text. */
+  happyHourInfo?: string
+  website?: string
+  note?: string
+  /** True om priset är exempeldata, inte verifierat. */
+  priceIsExample?: boolean
+}
+
+/** Pris per centiliter — nyckeltalet för rättvis jämförelse. */
+export function krPerCl(spot: { price: number; volumeCl: number }): number {
+  return spot.price / spot.volumeCl
+}
