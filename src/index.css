@@ -22,6 +22,13 @@ body {
   margin: 0;
   padding: 0;
   background: var(--bg);
+  background-image: radial-gradient(
+      1200px 600px at 50% -200px,
+      #e7f7f2 0%,
+      transparent 60%
+    ),
+    linear-gradient(180deg, #f8fafc 0%, var(--bg) 100%);
+  background-attachment: fixed;
   color: var(--text);
   -webkit-font-smoothing: antialiased;
 }
@@ -29,6 +36,63 @@ body {
 button {
   font-family: inherit;
   cursor: pointer;
+}
+
+/* ---------- Animationer ---------- */
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes pop {
+  0% {
+    transform: scale(1);
+  }
+  40% {
+    transform: scale(1.45) rotate(-8deg);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@keyframes pulse-dot {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.7);
+    opacity: 0.55;
+  }
+}
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
 }
 
 .app {
@@ -44,10 +108,11 @@ button {
   position: sticky;
   top: 0;
   z-index: 500;
-  background: var(--card);
-  padding: env(safe-area-inset-top) 14px 10px;
+  background: linear-gradient(180deg, #ffffff 0%, #f3fbf8 100%);
+  backdrop-filter: saturate(1.2) blur(8px);
+  padding: env(safe-area-inset-top) 14px 12px;
   border-bottom: 1px solid var(--line);
-  box-shadow: var(--shadow);
+  box-shadow: 0 4px 20px -8px rgba(15, 118, 110, 0.25);
 }
 
 .header-top {
@@ -58,14 +123,25 @@ button {
 }
 
 .header h1 {
-  font-size: 22px;
+  font-size: 23px;
   margin: 0;
-  color: var(--teal-dark);
-  letter-spacing: -0.02em;
+  letter-spacing: -0.025em;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.header h1 .title {
+  background: linear-gradient(100deg, var(--teal-dark), #0ea5a0 70%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
 .logo {
-  margin-right: 2px;
+  display: inline-block;
+  transform-origin: 70% 70%;
+  animation: pop 0.6s ease 0.2s both;
 }
 
 .locate {
@@ -76,10 +152,28 @@ button {
   border-radius: 12px;
   font-size: 18px;
   line-height: 1;
+  transition: transform 0.15s ease, background 0.2s ease, border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+.locate:hover {
+  border-color: var(--teal);
+}
+.locate:active {
+  transform: scale(0.9);
 }
 .locate.on {
   background: #d1fae5;
   border-color: #6ee7b7;
+  box-shadow: 0 0 0 4px rgba(110, 231, 183, 0.3);
+}
+.spinner {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(15, 118, 110, 0.25);
+  border-top-color: var(--teal);
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
 }
 
 /* ---------- Day selector ---------- */
@@ -104,11 +198,18 @@ button {
   font-size: 13px;
   font-weight: 600;
   color: var(--muted);
+  transition: transform 0.15s ease, background 0.25s ease, color 0.25s ease,
+    border-color 0.25s ease, box-shadow 0.25s ease;
+}
+.day:active {
+  transform: scale(0.92);
 }
 .day.active {
-  background: var(--teal);
-  border-color: var(--teal);
+  background: linear-gradient(160deg, var(--teal), var(--teal-dark));
+  border-color: var(--teal-dark);
   color: #fff;
+  box-shadow: 0 6px 14px -6px rgba(15, 118, 110, 0.6);
+  transform: translateY(-1px);
 }
 .day .dot {
   display: block;
@@ -117,9 +218,11 @@ button {
   border-radius: 50%;
   background: var(--amber);
   margin: 3px auto 0;
+  animation: pulse-dot 2s ease-in-out infinite;
 }
 .day.active .dot {
   background: #fff;
+  animation: none;
 }
 
 /* ---------- Search ---------- */
@@ -134,10 +237,12 @@ button {
   font-size: 15px;
   background: var(--bg);
   outline: none;
+  transition: border-color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
 }
 .search input:focus {
   border-color: var(--teal);
   background: #fff;
+  box-shadow: 0 0 0 4px rgba(15, 118, 110, 0.12);
 }
 
 /* ---------- Chips ---------- */
@@ -154,18 +259,24 @@ button {
 }
 .chip {
   flex: 0 0 auto;
-  padding: 6px 12px;
+  padding: 6px 13px;
   border: 1px solid var(--line);
   background: var(--card);
   border-radius: 999px;
   font-size: 13px;
   color: var(--muted);
   white-space: nowrap;
+  transition: transform 0.15s ease, background 0.2s ease, color 0.2s ease,
+    border-color 0.2s ease;
+}
+.chip:active {
+  transform: scale(0.93);
 }
 .chip.active {
   background: var(--teal);
   border-color: var(--teal);
   color: #fff;
+  box-shadow: 0 4px 10px -4px rgba(15, 118, 110, 0.5);
 }
 
 /* ---------- Controls ---------- */
@@ -217,6 +328,11 @@ button {
   font-size: 14px;
   font-weight: 600;
   color: var(--muted);
+  transition: transform 0.15s ease, background 0.2s ease, color 0.2s ease,
+    border-color 0.2s ease;
+}
+.viewtabs button:active {
+  transform: scale(0.94);
 }
 .viewtabs button.active {
   background: var(--teal-dark);
@@ -227,6 +343,7 @@ button {
   margin-left: auto;
   font-size: 12px;
   color: var(--muted);
+  animation: fade 0.4s ease;
 }
 
 /* ---------- List ---------- */
@@ -255,9 +372,19 @@ button {
   border-radius: var(--radius);
   padding: 14px 16px;
   box-shadow: var(--shadow);
+  animation: rise 0.5s cubic-bezier(0.2, 0.7, 0.3, 1) backwards;
+  animation-delay: calc(var(--i, 0) * 45ms);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px -10px rgba(15, 23, 42, 0.28);
 }
 .card.closed {
   opacity: 0.62;
+}
+.empty {
+  animation: fade 0.4s ease;
 }
 .card-head {
   display: flex;
@@ -282,9 +409,14 @@ button {
   line-height: 1;
   color: var(--line);
   padding: 0 2px;
+  transition: transform 0.15s ease, color 0.2s ease;
+}
+.fav:active {
+  transform: scale(0.85);
 }
 .fav.on {
   color: var(--amber);
+  animation: pop 0.45s ease;
 }
 
 .dishes {
@@ -379,18 +511,24 @@ button {
 .menu-cta {
   display: inline-flex;
   align-items: center;
-  gap: 4px;
+  gap: 6px;
   margin-top: 12px;
   padding: 9px 16px;
-  background: var(--teal);
+  background: linear-gradient(135deg, var(--teal), var(--teal-dark));
   color: #fff;
   font-size: 14px;
   font-weight: 600;
   border-radius: 10px;
   text-decoration: none;
+  box-shadow: 0 6px 16px -8px rgba(15, 118, 110, 0.7);
+  transition: transform 0.15s ease, box-shadow 0.2s ease, gap 0.2s ease;
+}
+.menu-cta:hover {
+  gap: 10px;
+  box-shadow: 0 10px 22px -8px rgba(15, 118, 110, 0.8);
 }
 .menu-cta:active {
-  background: var(--teal-dark);
+  transform: scale(0.96);
 }
 
 .note {
@@ -419,6 +557,7 @@ button {
   overflow: hidden;
   box-shadow: var(--shadow);
   z-index: 1;
+  animation: fade 0.4s ease;
 }
 .popup {
   position: absolute;
@@ -430,6 +569,7 @@ button {
   border-radius: var(--radius);
   padding: 14px 16px;
   box-shadow: 0 8px 30px rgba(15, 23, 42, 0.2);
+  animation: rise 0.3s cubic-bezier(0.2, 0.7, 0.3, 1);
 }
 .popup-close {
   position: absolute;

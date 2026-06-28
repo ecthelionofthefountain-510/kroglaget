@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react'
+import { useMemo, useState, type CSSProperties } from 'react'
 import { restaurants, YSTAD_CENTER } from './data/restaurants'
 import {
   WEEKDAYS,
@@ -112,14 +112,15 @@ export default function App() {
       <header className="header">
         <div className="header-top">
           <h1>
-            <span className="logo">🍴</span> Lunch i Ystad
+            <span className="logo">🍴</span>
+            <span className="title">Lunch i Ystad</span>
           </h1>
           <button
             className={`locate ${status === 'granted' ? 'on' : ''}`}
             onClick={request}
             title="Använd min position"
           >
-            {status === 'loading' ? '…' : '📍'}
+            {status === 'loading' ? <span className="spinner" /> : '📍'}
           </button>
         </div>
 
@@ -241,8 +242,12 @@ export default function App() {
                 Inga luncher matchar. Prova en annan dag eller rensa filter.
               </li>
             )}
-            {items.map(({ restaurant: r, todaysMenu, distance, openToday }) => (
-              <li key={r.id} className={`card ${openToday ? '' : 'closed'}`}>
+            {items.map(({ restaurant: r, todaysMenu, distance, openToday }, i) => (
+              <li
+                key={`${day}-${r.id}`}
+                className={`card ${openToday ? '' : 'closed'}`}
+                style={{ '--i': i } as CSSProperties}
+              >
                 <div className="card-head">
                   <div>
                     <h2>{r.name}</h2>
