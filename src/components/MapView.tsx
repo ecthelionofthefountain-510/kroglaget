@@ -20,7 +20,7 @@ interface Props {
 }
 
 function markerHtml(p: MapPoint, selected: boolean): string {
-  const bg = !p.openToday ? '#94a3b8' : p.favorite ? '#f59e0b' : '#0f766e'
+  const bg = !p.openToday ? '#5b6486' : p.favorite ? '#fbbf24' : '#8b7bff'
   const scale = selected ? 1.25 : 1
   return `
     <div style="

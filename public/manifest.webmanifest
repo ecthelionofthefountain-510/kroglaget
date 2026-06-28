@@ -4,8 +4,8 @@
   "description": "Dagens luncher i Ystad med omnejd — samlat på ett ställe.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#f8fafc",
-  "theme_color": "#0f766e",
+  "background_color": "#242b42",
+  "theme_color": "#242b42",
   "icons": [
     {
       "src": "/icon.svg",
