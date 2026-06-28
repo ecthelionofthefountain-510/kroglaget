@@ -376,17 +376,21 @@ button {
   letter-spacing: 0.04em;
 }
 
-.serves {
-  margin: 12px 0 0;
-  font-size: 14.5px;
-  color: var(--text);
-}
-.serves a,
-.hours a,
-.note a {
-  color: var(--teal);
+.menu-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 12px;
+  padding: 9px 16px;
+  background: var(--teal);
+  color: #fff;
+  font-size: 14px;
   font-weight: 600;
+  border-radius: 10px;
   text-decoration: none;
+}
+.menu-cta:active {
+  background: var(--teal-dark);
 }
 
 .note {

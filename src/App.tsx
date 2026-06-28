@@ -16,6 +16,12 @@ import MapView, { type MapPoint } from './components/MapView'
 
 const PRICE_MAX = 250
 
+/** Bästa länken för att se aktuell lunch — egen sida/FB, annars en Google-sökning. */
+function menuLink(name: string, website?: string): string {
+  if (website) return website
+  return `https://www.google.com/search?q=${encodeURIComponent(`${name} Ystad lunch`)}`
+}
+
 export default function App() {
   const today = weekdayOf(new Date())
   const [day, setDay] = useState<Weekday>(today)
@@ -266,54 +272,45 @@ export default function App() {
                 )}
 
                 {openToday ? (
-                  todaysMenu.length > 0 ? (
-                    <>
-                      {r.menuIsExample && (
-                        <p className="examplenote">Exempelmeny – ej verifierad</p>
-                      )}
-                      <ul className="dishes">
-                        {todaysMenu.map((d, i) => (
-                          <li key={i}>
-                            <span>{d.name}</span>
-                            {d.tags && d.tags.length > 0 && (
-                              <span className="tags">
-                                {d.tags.map((t) => (
-                                  <span key={t} className={`tag tag-${t}`}>
-                                    {DISH_TAG_LABEL[t]}
-                                  </span>
-                                ))}
-                              </span>
-                            )}
-                          </li>
-                        ))}
-                      </ul>
-                    </>
-                  ) : (
-                    <p className="serves">
-                      🍽️ Serverar lunch{' '}
-                      {r.website && (
-                        <a href={r.website} target="_blank" rel="noreferrer">
-                          se meny →
-                        </a>
-                      )}
-                    </p>
-                  )
+                  <>
+                    {todaysMenu.length > 0 && (
+                      <>
+                        {r.menuIsExample && (
+                          <p className="examplenote">Exempelmeny – ej verifierad</p>
+                        )}
+                        <ul className="dishes">
+                          {todaysMenu.map((d, i) => (
+                            <li key={i}>
+                              <span>{d.name}</span>
+                              {d.tags && d.tags.length > 0 && (
+                                <span className="tags">
+                                  {d.tags.map((t) => (
+                                    <span key={t} className={`tag tag-${t}`}>
+                                      {DISH_TAG_LABEL[t]}
+                                    </span>
+                                  ))}
+                                </span>
+                              )}
+                            </li>
+                          ))}
+                        </ul>
+                      </>
+                    )}
+                    <a
+                      className="menu-cta"
+                      href={menuLink(r.name, r.website)}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      Se aktuell meny →
+                    </a>
+                  </>
                 ) : (
                   <p className="noserve">Ingen lunch {WEEKDAY_LABEL[day].toLowerCase()}.</p>
                 )}
 
                 {r.note && <p className="note">{r.note}</p>}
-                <p className="hours">
-                  {r.hours}
-                  {r.website && (
-                    <>
-                      {' · '}
-                      <a href={r.website} target="_blank" rel="noreferrer">
-                        Webbplats
-                      </a>
-                    </>
-                  )}
-                </p>
+                <p className="hours">{r.hours}</p>
               </li>
             ))}
           </ul>
@@ -372,15 +369,23 @@ function SelectedCard({
         </button>
       </div>
       {openToday ? (
-        menu.length > 0 ? (
-          <ul className="dishes">
-            {menu.map((d, i) => (
-              <li key={i}>{d.name}</li>
-            ))}
-          </ul>
-        ) : (
-          <p className="serves">🍽️ Serverar lunch denna dag</p>
-        )
+        <>
+          {menu.length > 0 && (
+            <ul className="dishes">
+              {menu.map((d, i) => (
+                <li key={i}>{d.name}</li>
+              ))}
+            </ul>
+          )}
+          <a
+            className="menu-cta"
+            href={menuLink(r.name, r.website)}
+            target="_blank"
+            rel="noreferrer"
+          >
+            Se aktuell meny →
+          </a>
+        </>
       ) : (
         <p className="noserve">Ingen lunch denna dag.</p>
       )}

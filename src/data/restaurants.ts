@@ -37,6 +37,7 @@ export const restaurants: Restaurant[] = [
     hours: 'Mån–lör 11:00–15:30, sön 12:00–15:30',
     lunchDays: ALL_DAYS,
     tags: ['husmanskost'],
+    website: 'https://www.grandensmat.se/lunchmeny/',
   },
   {
     id: 'tumult',
@@ -62,6 +63,7 @@ export const restaurants: Restaurant[] = [
     hours: 'Alla dagar 11:30–sent',
     lunchDays: ALL_DAYS,
     tags: ['havsutsikt'],
+    website: 'https://www.ystadmarinan.se/maten/',
   },
   {
     id: 'port-ysb',
@@ -117,6 +119,7 @@ export const restaurants: Restaurant[] = [
     lunchDays: ALL_DAYS,
     tags: [],
     note: 'Sommaröppet. Kväll: mån–tor 17–23, fre–lör 17–24, sön till 22.',
+    website: 'https://hotellcontinental.se/restaurang/',
   },
   {
     id: 'backahasten',
@@ -162,6 +165,7 @@ export const restaurants: Restaurant[] = [
     lunchDays: ['tue', 'wed', 'thu', 'fri', 'sat'],
     tags: ['kafe'],
     note: 'Dagens soppa, bakad potatis, varmrökt lax, bruschetta & sallader.',
+    website: 'https://hosmortencafe.se',
   },
   {
     id: 'lisas-skafferi',
@@ -174,6 +178,7 @@ export const restaurants: Restaurant[] = [
     lunchDays: MON_FRI,
     tags: ['kafe'],
     note: 'Avhämtning: dagens varmrätt, soppa med bröd, paj & pastasallader.',
+    website: 'https://www.lisasskafferi.se/dagens-lunch/',
   },
   {
     id: 'fritidsbaren',
@@ -186,6 +191,7 @@ export const restaurants: Restaurant[] = [
     lunchDays: ALL_DAYS,
     tags: ['kafe', 'havsutsikt'],
     note: 'I Sandskogen, känd för sina wienerbröd.',
+    website: 'https://www.facebook.com/fritidsbaren/',
   },
   {
     id: 'jaktpaviljongen',
