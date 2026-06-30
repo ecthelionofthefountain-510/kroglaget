@@ -86,8 +86,9 @@ export default function BeerView({
         lng: s.lng,
         openToday: true,
         favorite: isFavorite(s.id),
+        best: s.id === cheapestId,
       })),
-    [items, isFavorite],
+    [items, isFavorite, cheapestId],
   )
 
   return (

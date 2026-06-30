@@ -9,6 +9,8 @@ export interface MapPoint {
   lng: number
   openToday: boolean
   favorite: boolean
+  /** Markera billigaste ölstället (guld + stjärna). */
+  best?: boolean
 }
 
 interface Props {
@@ -20,7 +22,14 @@ interface Props {
 }
 
 function markerHtml(p: MapPoint, selected: boolean): string {
-  const bg = !p.openToday ? '#5b6486' : p.favorite ? '#fbbf24' : '#8b7bff'
+  const bg = p.best
+    ? '#fbbf24'
+    : !p.openToday
+      ? '#5b6486'
+      : p.favorite
+        ? '#f5a623'
+        : '#8b7bff'
+  const star = p.best || p.favorite
   const scale = selected ? 1.25 : 1
   return `
     <div style="
@@ -33,7 +42,7 @@ function markerHtml(p: MapPoint, selected: boolean): string {
       <svg width="30" height="38" viewBox="0 0 30 38" xmlns="http://www.w3.org/2000/svg">
         <path d="M15 0C6.7 0 0 6.7 0 15c0 10.5 13 21.6 13.6 22.1a2 2 0 0 0 2.8 0C17 36.6 30 25.5 30 15 30 6.7 23.3 0 15 0Z" fill="${bg}"/>
         <circle cx="15" cy="14.5" r="6" fill="#fff"/>
-        ${p.favorite ? `<text x="15" y="19" font-size="9" text-anchor="middle" fill="${bg}">★</text>` : ''}
+        ${star ? `<text x="15" y="19" font-size="9" text-anchor="middle" fill="${bg}">★</text>` : ''}
       </svg>
     </div>`
 }
