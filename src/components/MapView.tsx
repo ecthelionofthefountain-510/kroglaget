@@ -25,10 +25,10 @@ function markerHtml(p: MapPoint, selected: boolean): string {
   const bg = p.best
     ? '#fbbf24'
     : !p.openToday
-      ? '#5b6486'
+      ? '#4a4c50'
       : p.favorite
         ? '#f5a623'
-        : '#8b7bff'
+        : '#ff7a1a'
   const star = p.best || p.favorite
   const scale = selected ? 1.25 : 1
   return `

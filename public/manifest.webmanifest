@@ -4,8 +4,8 @@
   "description": "Lunch och billig öl i Ystad med omnejd — samlat på ett ställe.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#242b42",
-  "theme_color": "#242b42",
+  "background_color": "#212225",
+  "theme_color": "#212225",
   "icons": [
     {
       "src": "/icon.svg",
