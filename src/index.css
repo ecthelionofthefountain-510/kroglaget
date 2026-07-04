@@ -119,22 +119,21 @@ button {
   flex-direction: column;
 }
 
-/* ---------- Sticky verktygsrad (hero ligger ovanför och scrollar bort) ---------- */
+/* ---------- Verktygsrad (scrollar bort med sidan) ---------- */
 .toolbar {
+  padding: 11px 16px 13px;
+}
+
+/* ---------- Hero (sticky – syns alltid högst upp) ---------- */
+.hero {
   position: sticky;
   top: 0;
   z-index: 500;
   background: var(--bg);
-  padding: 11px 16px 13px;
-  box-shadow: 0 14px 28px -16px #0c0f1d;
-}
-
-/* ---------- Hero (scrollar med sidan) ---------- */
-.hero {
-  position: relative;
   padding: calc(env(safe-area-inset-top) + 14px) 16px 24px;
   text-align: center;
   overflow: hidden;
+  box-shadow: 0 10px 22px -16px #0c0f1d;
 }
 .hero .locate {
   position: absolute;
