@@ -190,7 +190,7 @@ export default function BeerView({
 
                 <div className="beer-price-row">
                   <div className="beer-price">
-                    {s.price} kr <span>stor stark</span>
+                    {s.price} kr <span>billigast</span>
                   </div>
                   <div className={`krcl ${s.id === cheapestId ? 'best' : ''}`}>
                     {s.id === cheapestId && '🏆 '}
@@ -223,8 +223,9 @@ export default function BeerView({
       </main>
 
       <footer className="disclaimer">
-        ⚠️ Ölpriserna är exempeldata och måste verifieras — priser ändras ofta.
-        Nyckeltalet kr/cl gör olika storlekar jämförbara. Drick måttligt. 🍺
+        💡 Priser från Ystads Allehanda (juni 2026), avser ställets billigaste öl.
+        kr/cl gör olika storlekar jämförbara. Priser ändras – dubbelkolla vid
+        behov. Drick måttligt. 🍺
       </footer>
     </>
   )
@@ -271,7 +272,7 @@ function BeerPopup({
       </div>
       <div className="beer-price-row">
         <div className="beer-price">
-          {s.price} kr <span>stor stark</span>
+          {s.price} kr <span>billigast</span>
         </div>
         <div className={`krcl ${s.id === cheapestId ? 'best' : ''}`}>
           {s.id === cheapestId && '🏆 '}
