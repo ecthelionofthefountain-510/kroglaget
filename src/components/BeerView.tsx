@@ -13,7 +13,7 @@ import { useNow } from '../hooks/useNow'
 import { YSTAD_CENTER } from '../data/restaurants'
 import type { Coords } from '../hooks/useGeolocation'
 import MapView, { type MapPoint } from './MapView'
-import TopBar, { type Mode } from './TopBar'
+import { Hero, ModeTabs, type Mode } from './TopBar'
 
 interface Fav {
   isFavorite: (id: string) => boolean
@@ -96,8 +96,10 @@ export default function BeerView({
 
   return (
     <>
-      <header className="header">
-        <TopBar mode={mode} setMode={setMode} status={geo.status} onLocate={geo.request} />
+      <Hero mode={mode} status={geo.status} onLocate={geo.request} />
+
+      <header className="toolbar">
+        <ModeTabs mode={mode} setMode={setMode} />
 
         <div className="beer-sort">
           {SORTS.map((s) => (

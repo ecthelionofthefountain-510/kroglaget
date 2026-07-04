@@ -119,27 +119,27 @@ button {
   flex-direction: column;
 }
 
-/* ---------- Header ---------- */
-.header {
+/* ---------- Sticky verktygsrad (hero ligger ovanför och scrollar bort) ---------- */
+.toolbar {
   position: sticky;
   top: 0;
   z-index: 500;
   background: var(--bg);
-  padding: env(safe-area-inset-top) 16px 14px;
+  padding: 11px 16px 13px;
   box-shadow: 0 14px 28px -16px #0c0f1d;
 }
 
-/* ---------- Hero ---------- */
+/* ---------- Hero (scrollar med sidan) ---------- */
 .hero {
   position: relative;
-  padding: 18px 0 30px;
+  padding: calc(env(safe-area-inset-top) + 14px) 16px 24px;
   text-align: center;
   overflow: hidden;
 }
 .hero .locate {
   position: absolute;
-  top: 10px;
-  right: 0;
+  top: calc(env(safe-area-inset-top) + 10px);
+  right: 16px;
   z-index: 2;
 }
 .hero-inner {
@@ -227,7 +227,7 @@ button {
 .days {
   display: flex;
   gap: 8px;
-  margin-top: 16px;
+  margin-top: 11px;
   overflow-x: auto;
   scrollbar-width: none;
   padding: 2px;
@@ -275,7 +275,7 @@ button {
 
 /* ---------- Search ---------- */
 .search {
-  margin-top: 16px;
+  margin-top: 11px;
 }
 .search input {
   width: 100%;
@@ -335,7 +335,7 @@ button {
   display: flex;
   align-items: center;
   gap: 16px;
-  margin-top: 16px;
+  margin-top: 11px;
   flex-wrap: wrap;
   font-size: 13px;
   color: var(--muted);
@@ -369,7 +369,7 @@ button {
   display: flex;
   align-items: center;
   gap: 8px;
-  margin-top: 16px;
+  margin-top: 11px;
 }
 .viewtabs button {
   padding: 8px 18px;
@@ -668,7 +668,7 @@ button {
 .modes {
   display: flex;
   gap: 6px;
-  margin-top: 16px;
+  margin-top: 0;
   padding: 5px;
   border-radius: 15px;
   background: var(--bg-sunken);
@@ -699,7 +699,7 @@ button {
 .beer-sort {
   display: flex;
   gap: 8px;
-  margin-top: 16px;
+  margin-top: 11px;
   flex-wrap: wrap;
 }
 .beer-sort .chip.is-disabled {
