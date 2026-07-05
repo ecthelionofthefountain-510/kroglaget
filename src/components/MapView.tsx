@@ -60,12 +60,16 @@ export default function MapView({
   const userMarkerRef = useRef<L.Marker | null>(null)
   const onSelectRef = useRef(onSelect)
   onSelectRef.current = onSelect
+  // Fångar bara startvärdet — ändras center senare (t.ex. geolocation löses ut)
+  // ska kartan panorera, inte återskapas.
+  const initialCenterRef = useRef(center)
 
   // Initiera kartan en gång.
   useEffect(() => {
     if (mapRef.current || !elRef.current) return
+    const c = initialCenterRef.current
     const map = L.map(elRef.current, {
-      center: [center.lat, center.lng],
+      center: [c.lat, c.lng],
       zoom: 13,
       zoomControl: true,
     })
@@ -79,7 +83,7 @@ export default function MapView({
       mapRef.current = null
       markersRef.current.clear()
     }
-  }, [center.lat, center.lng])
+  }, [])
 
   // Synka restaurangmarkörer.
   useEffect(() => {

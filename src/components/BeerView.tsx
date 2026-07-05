@@ -27,7 +27,7 @@ interface Geo {
 }
 
 const SORTS: BeerSort[] = ['cl', 'price', 'distance']
-const CONTAINERS: Container[] = ['fat', 'flaska', 'burk']
+const CONTAINERS: Container[] = ['fat', 'flaska']
 
 function fmtCl(n: number): string {
   return `${n.toFixed(2).replace('.', ',')} kr/cl`
