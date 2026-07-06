@@ -406,6 +406,8 @@ button {
   color: var(--text);
 }
 .filter-apply {
+  appearance: none;
+  border: none;
   flex: 1;
   justify-content: center;
   margin-top: 0;
