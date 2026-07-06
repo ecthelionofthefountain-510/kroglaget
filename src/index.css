@@ -275,17 +275,6 @@ button {
 }
 
 /* ---------- Chips ---------- */
-.chips {
-  display: flex;
-  gap: 8px;
-  margin-top: 14px;
-  overflow-x: auto;
-  scrollbar-width: none;
-  padding: 2px;
-}
-.chips::-webkit-scrollbar {
-  display: none;
-}
 .chip {
   flex: 0 0 auto;
   padding: 7px 14px;
@@ -306,40 +295,6 @@ button {
   color: #fff;
   background: linear-gradient(135deg, var(--accent), var(--accent-2));
   box-shadow: var(--glow);
-}
-
-/* ---------- Controls ---------- */
-.controls {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  margin-top: 11px;
-  flex-wrap: wrap;
-  font-size: 13px;
-  color: var(--muted);
-}
-.price {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  flex: 1 1 160px;
-}
-.price input {
-  width: 100%;
-  accent-color: var(--accent);
-}
-.toggle {
-  display: flex;
-  align-items: center;
-  gap: 7px;
-}
-.toggle input {
-  accent-color: var(--accent);
-  width: 16px;
-  height: 16px;
-}
-.toggle.disabled {
-  opacity: 0.4;
 }
 
 /* ---------- View tabs ---------- */
@@ -617,13 +572,6 @@ button {
   background: rgba(251, 191, 36, 0.18);
   color: #fcd34d;
 }
-.noserve {
-  margin: 12px 0 0;
-  font-size: 14px;
-  color: var(--muted);
-  font-style: italic;
-}
-
 .menu-cta {
   display: inline-flex;
   align-items: center;

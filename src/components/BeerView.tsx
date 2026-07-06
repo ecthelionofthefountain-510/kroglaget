@@ -14,7 +14,7 @@ import { useNow } from '../hooks/useNow'
 import { YSTAD_CENTER } from '../data/restaurants'
 import type { Coords } from '../hooks/useGeolocation'
 import MapView, { type MapPoint } from './MapView'
-import { Hero, ModeTabs, type Mode } from './TopBar'
+import { Hero, ModeTabs, FavButton, type Mode } from './TopBar'
 
 interface Fav {
   isFavorite: (id: string) => boolean
@@ -220,13 +220,7 @@ export default function BeerView({
                     </p>
                     <p className="beer-address">📍 {s.address}</p>
                   </div>
-                  <button
-                    className={`fav ${isFavorite(s.id) ? 'on' : ''}`}
-                    onClick={() => toggle(s.id)}
-                    aria-label="Spara som favorit"
-                  >
-                    {isFavorite(s.id) ? '★' : '☆'}
-                  </button>
+                  <FavButton id={s.id} isFavorite={isFavorite} toggle={toggle} />
                 </div>
 
                 <div className="beer-price-row">
@@ -299,13 +293,7 @@ function BeerPopup({
         <div>
           <h2 className="popup-title">
             {s.name}
-            <button
-              className={`fav fav-inline ${isFavorite(s.id) ? 'on' : ''}`}
-              onClick={() => toggle(s.id)}
-              aria-label="Spara som favorit"
-            >
-              {isFavorite(s.id) ? '★' : '☆'}
-            </button>
+            <FavButton id={s.id} isFavorite={isFavorite} toggle={toggle} inline />
           </h2>
           <p className="meta">
             {s.area}

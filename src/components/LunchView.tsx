@@ -12,7 +12,7 @@ import { anyActiveNow } from '../lib/time'
 import { useNow } from '../hooks/useNow'
 import type { Coords } from '../hooks/useGeolocation'
 import MapView, { type MapPoint } from './MapView'
-import { Hero, ModeTabs, type Mode } from './TopBar'
+import { Hero, ModeTabs, FavButton, type Mode } from './TopBar'
 
 interface Fav {
   isFavorite: (id: string) => boolean
@@ -187,13 +187,7 @@ export default function LunchView({
                       </span>
                     )}
                   </div>
-                  <button
-                    className={`fav ${isFavorite(r.id) ? 'on' : ''}`}
-                    onClick={() => toggle(r.id)}
-                    aria-label="Spara som favorit"
-                  >
-                    {isFavorite(r.id) ? '★' : '☆'}
-                  </button>
+                  <FavButton id={r.id} isFavorite={isFavorite} toggle={toggle} />
                 </div>
 
                 {r.tags.length > 0 && (
@@ -283,13 +277,7 @@ function LunchPopup({
         <div>
           <h2 className="popup-title">
             {r.name}
-            <button
-              className={`fav fav-inline ${isFavorite(r.id) ? 'on' : ''}`}
-              onClick={() => toggle(r.id)}
-              aria-label="Spara som favorit"
-            >
-              {isFavorite(r.id) ? '★' : '☆'}
-            </button>
+            <FavButton id={r.id} isFavorite={isFavorite} toggle={toggle} inline />
           </h2>
           <p className="meta">
             {r.area}

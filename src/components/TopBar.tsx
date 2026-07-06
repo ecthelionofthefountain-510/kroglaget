@@ -45,3 +45,27 @@ export function ModeTabs({ mode, setMode }: { mode: Mode; setMode: (m: Mode) => 
     </div>
   )
 }
+
+/** Favorit-stjärna. `inline` placerar den bredvid en rubrik istället för i card-headens hörn. */
+export function FavButton({
+  id,
+  isFavorite,
+  toggle,
+  inline,
+}: {
+  id: string
+  isFavorite: (id: string) => boolean
+  toggle: (id: string) => void
+  inline?: boolean
+}) {
+  const on = isFavorite(id)
+  return (
+    <button
+      className={`fav ${inline ? 'fav-inline' : ''} ${on ? 'on' : ''}`}
+      onClick={() => toggle(id)}
+      aria-label="Spara som favorit"
+    >
+      {on ? '★' : '☆'}
+    </button>
+  )
+}
