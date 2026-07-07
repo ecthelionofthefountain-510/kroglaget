@@ -9,6 +9,7 @@ import {
 } from '../types'
 import { distanceKm, formatDistance, weekdayOf } from '../lib/distance'
 import { anyActiveNow } from '../lib/time'
+import { reportLink } from '../lib/report'
 import { useNow } from '../hooks/useNow'
 import type { Coords } from '../hooks/useGeolocation'
 import MapView, { type MapPoint } from './MapView'
@@ -232,6 +233,12 @@ export default function LunchView({
                 >
                   Se aktuell meny →
                 </a>
+                <a
+                  className="report-link"
+                  href={reportLink(r.name, r.price != null ? `${r.price} kr` : undefined)}
+                >
+                  🚩 Rapportera fel info
+                </a>
 
                 {r.note && <p className="note">{r.note}</p>}
                 <p className="hours">{r.hours}</p>
@@ -295,6 +302,12 @@ function LunchPopup({
       )}
       <a className="menu-cta" href={menuLink(r.name, r.website)} target="_blank" rel="noreferrer">
         Se aktuell meny →
+      </a>
+      <a
+        className="report-link"
+        href={reportLink(r.name, r.price != null ? `${r.price} kr` : undefined)}
+      >
+        🚩 Rapportera fel info
       </a>
       <p className="hours">{r.hours}</p>
     </div>

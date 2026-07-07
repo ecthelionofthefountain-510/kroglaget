@@ -596,6 +596,17 @@ button {
 .menu-cta:active {
   transform: scale(0.96);
 }
+.report-link {
+  display: block;
+  margin-top: 9px;
+  font-size: 12px;
+  color: var(--faint);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.report-link:active {
+  color: var(--muted);
+}
 
 .note {
   margin: 10px 0 0;

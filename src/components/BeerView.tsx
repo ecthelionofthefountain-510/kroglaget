@@ -10,6 +10,7 @@ import {
 } from '../types'
 import { distanceKm, formatDistance } from '../lib/distance'
 import { activeNow } from '../lib/time'
+import { reportLink } from '../lib/report'
 import { useNow } from '../hooks/useNow'
 import { YSTAD_CENTER } from '../data/restaurants'
 import type { Coords } from '../hooks/useGeolocation'
@@ -250,6 +251,9 @@ export default function BeerView({
                 <a className="menu-cta" href={directionsLink(s)} target="_blank" rel="noreferrer">
                   Vägbeskrivning →
                 </a>
+                <a className="report-link" href={reportLink(s.name, `${s.price} kr, ${s.brand}`)}>
+                  🚩 Rapportera fel pris
+                </a>
               </li>
               )
             })}
@@ -316,6 +320,9 @@ function BeerPopup({
       </p>
       <a className="menu-cta" href={directionsLink(s)} target="_blank" rel="noreferrer">
         Vägbeskrivning →
+      </a>
+      <a className="report-link" href={reportLink(s.name, `${s.price} kr, ${s.brand}`)}>
+        🚩 Rapportera fel pris
       </a>
     </div>
   )
